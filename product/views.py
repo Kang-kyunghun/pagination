@@ -9,9 +9,9 @@ from .models                import Product
 class ProductsView(View):   
     def get(self, request):    
         offset = int(request.GET.get("offset",0))
-        limit  = int(request.GET.get("limit",1))
+        limit  = int(request.GET.get("limit",141))
         
-        products = Product.objects.all()[offset:offset+limit]
+        products = Product.objects.all()
         data = {
             "count"  : products.count(),
             "result" : [{
@@ -19,7 +19,7 @@ class ProductsView(View):
                             "name"        : product.name,
                             "image_url"   : product.image_url,
                             "description" : product.description
-                        } for product in products]
+                        } for product in products[offset:offset+limit]]
         }
         
         return JsonResponse({'products': data}, status=200)

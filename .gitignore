@@ -3,7 +3,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,vim,vscode,python,django
 
 my_settings.py
-
+db_uploader.py
+*.csv
 
 ### Django ###
 *.log
